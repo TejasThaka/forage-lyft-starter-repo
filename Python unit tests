@@ -1,0 +1,68 @@
+Unittest
+
+import unittest
+from battery import Battery
+from engine import Engine
+
+test_battery.py
+
+class TestBattery(unittest.TestCase):
+    def test_initial_capacity(self):
+        battery = Battery(100)
+        self.assertEqual(battery.get_capacity(), 100)
+
+    def test_charge(self):
+        battery = Battery(100)
+        battery.charge(20)
+        self.assertEqual(battery.get_capacity(), 120)
+
+    def test_discharge(self):
+        battery = Battery(100)
+        battery.discharge(30)
+        self.assertEqual(battery.get_capacity(), 70)
+
+    def test_charge_negative_amount(self):
+        battery = Battery(100)
+        battery.charge(-10)
+        self.assertEqual(battery.get_capacity(), 100)
+
+    def test_discharge_negative_amount(self):
+        battery = Battery(100)
+        battery.discharge(-10)
+        self.assertEqual(battery.get_capacity(), 100)
+
+if __name__ == '__main__':
+    unittest.main()
+
+test_engine.py
+
+class TestEngine(unittest.TestCase):
+    def test_initial_horsepower(self):
+        engine = Engine(200)
+        self.assertEqual(engine.get_horsepower(), 200)
+
+    def test_increase_horsepower(self):
+        engine = Engine(200)
+        engine.increase_horsepower(50)
+        self.assertEqual(engine.get_horsepower(), 250)
+
+    def test_decrease_horsepower(self):
+        engine = Engine(200)
+        engine.decrease_horsepower(80)
+        self.assertEqual(engine.get_horsepower(), 120)
+
+    def test_increase_horsepower_negative_amount(self):
+        engine = Engine(200)
+        engine.increase_horsepower(-30)
+        self.assertEqual(engine.get_horsepower(), 200)
+
+    def test_decrease_horsepower_negative_amount(self):
+        engine = Engine(200)
+        engine.decrease_horsepower(-30)
+        self.assertEqual(engine.get_horsepower(), 200)
+
+if __name__ == '__main__':
+    unittest.main()
+-------------------------------------------------------
+python -m unittest discover tests
+
